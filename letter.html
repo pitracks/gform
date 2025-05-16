@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Letter</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700|Dancing+Script:400,700&display=swap">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            margin: 0;
+            background: #f8b4bc;
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .main-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            min-height: 100vh;
+            gap: 30px;
+        }
+        .side-video {
+            width: 220px;
+            height: 350px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+            background: #fff;
+            object-fit: cover;
+        }
+        .letter-container {
+            background: #EEE8E2;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .letter-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: #222;
+        }
+        .letter-header p {
+            font-size: 20px;
+            color: #666;
+            margin: 0;
+        }
+        .letter-content {
+            font-size: 24px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 30px 0;
+        }
+        @media (max-width: 1000px) {
+            .main-flex {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .side-video {
+                width: 90vw;
+                max-width: 350px;
+                height: 200px;
+            }
+        }
+        .collage-container {
+            position: absolute;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .collage-photo {
+            position: absolute;
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            border: 6px solid #fff;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        .main-flex, .letter-container, .side-video {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bg-music" src="ytmp3free.cc_daniel-caesar-best-part-audio-ft-her-youtubemp3free.org.mp3" autoplay loop hidden></audio>
+    <div class="collage-container" id="collage"></div>
+    <div class="main-flex">
+        <video class="side-video" src="angono2.mp4" controls></video>
+        <div class="letter-container">
+            <button class="back-button" onclick="window.location.href='index.html'">×</button>
+            <div class="letter-header">
+                <h1>HAPPY BIRTHDAY, BABY!</h1>
+                <p>to my tocino lover that brought so much love, laughter, and happiness into my life.</p>
+            </div>
+            <hr>
+            <div class="letter-content">
+                <p style="font-weight: 600;">My dearest Izzi</p>
+                <p>Can hardly believe that we have made this far, and here we are celebrating your birthday. I hope this day brings you all the joy and happiness that you deserve.</p>
+                <p>I want you to know how much I love and appreciate everything that you do for me. You make me feel loved, cared for, and valued, and I feel incredibly lucky to have you in my life. You have brought so much happiness and joy into my life, and I can't imagine a world without you.</p>
+                <p>I admire you for so many reasons - your kindness, your intelligence, your caring, your love and your compassion. You inspire me to be a better person, and you push me to be the best version of myself every day. I am so grateful for your love and support, and for the way you always stand by my side, through both the good times and the bad. I want you to know that I am also here for you, now and always. I promise to stand by your side, to support you through thick and thin, and to love you unconditionally.</p>
+                <p>So on this special day, I want to wish you the happiest of birthdays. May this year be filled with all the things that bring you joy, and may all your dreams and wishes come true. I can't wait to meet you and spend the rest of my life making you the happiest person in the world. I love you very muchie, my Izzi.</p>
+                <div class="signature">
+                    With all my love,<br>
+                    Pookie
+                </div>
+            </div>
+        </div>
+        <video class="side-video" src="photobooth.mp4" controls></video>
+    </div>
+    <script>
+    const images = [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg',
+      '11.jpg',
+      '12.jpg',
+      '13.jpg',
+      '14.jpg',
+      '15.jpg',
+      '16.jpg',
+      '17.jpg',
+      '18.jpg',
+      '19.jpg',
+      '20.jpg',
+      '21.jpg',
+      '22.jpg',
+      '23.jpg',
+      '24.jpg',
+      '25.jpg',
+      '26.jpg',
+      '27.jpg',
+      '28.jpg',
+      '29.jpg',
+      '30.jpg', 
+      '31.jpg',
+      '32.jpg',
+      '33.jpg',
+      '34.jpg',
+      '35.jpg',
+      '36.jpg',
+      '37.jpg',
+      '38.jpg',
+      '39.jpeg',
+      '40.jpeg',
+      '41.jpeg',
+      '42.jpeg',
+      '43.jpeg',
+      '44.jpeg',
+      '45.jpeg',
+      '46.jpeg',
+      '47.jpeg',
+      '48.jpeg',
+      '49.jpeg',
+      '50.jpeg',
+      '51.jpeg',
+      '52.jpeg',
+      '53.jpeg',
+      '54.jpeg',
+      '55.jpeg',
+      '56.jpeg',
+      '57.jpeg',
+      '58.jpeg',
+      '59.jpeg',
+      '60.jpeg',
+      '61.jpeg',
+      '62.jpeg',
+
+      
+      
+      // Add all your jpg filenames here
+    ];
+
+    function randomBetween(a, b) {
+      return Math.random() * (b - a) + a;
+    }
+
+    const collage = document.getElementById('collage');
+    const centerWidth = 600; // width of your letter container in px
+    const sideMargin = 60;   // margin from the edge in px
+
+    images.forEach((img, i) => {
+      const el = document.createElement('img');
+      el.src = img;
+      el.className = 'collage-photo';
+
+      // Randomly choose left or right side
+      const isLeft = Math.random() < 0.5;
+      // Calculate left position: left side or right side, avoiding the center
+      let left;
+      if (isLeft) {
+        left = Math.random() * (window.innerWidth / 2 - centerWidth / 2 - sideMargin);
+      } else {
+        left = window.innerWidth / 2 + centerWidth / 2 + Math.random() * (window.innerWidth / 2 - centerWidth / 2 - sideMargin);
+      }
+      // Spread vertically across the viewport
+      const top = Math.random() * (window.innerHeight - 150);
+
+      el.style.left = `${left}px`;
+      el.style.top = `${top}px`;
+      el.style.transform = `rotate(${randomBetween(-20, 20)}deg)`;
+      collage.appendChild(el);
+    });
+    </script>
+</body>
+</html> 

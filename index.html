@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <meta name="description" content="Make their birthday unforgettable with our customizable template. Surprise them with a heartfelt website filled with love and joy.">
+    <link rel="icon" href="mini.jpg" sizes="32x32">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700&display=swap">
+    <style>
+        body {font-family: 'Open Sans', Arial, Helvetica, sans-serif; margin: 0; background: #EEE8E2; color: #2B343B;}
+        header {background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.1); padding: 20px 0;}
+        .container {width: 90%; max-width: 1080px; margin: auto;}
+        .logo_container img {height: 43px;}
+        nav ul {list-style: none; padding: 0; margin: 0; display: flex; gap: 30px;}
+        nav ul li a {text-decoration: none; color: #2ea3f2; font-weight: 600;}
+        nav ul li a[aria-current="page"] { color: #e86474; }
+        h1 {font-family: 'Montserrat', sans-serif; font-size: 48px; font-weight: 900; margin: 0;}
+        h2 {font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 600; margin: 0 0 20px 0;}
+        .main-section {display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 60px 0;}
+        .main-text {flex: 1 1 300px;}
+        .main-img {flex: 1 1 300px; text-align: right;}
+        .main-img img {max-width: 350px; width: 100%;}
+        .cards {display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin: 40px 0;}
+        .card {background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 30px 20px; text-align: center; width: 220px;}
+        .card img {max-width: 120px; margin-bottom: 15px;}
+        .card h3 {font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; margin: 10px 0;}
+        .card a {display: inline-block; margin-top: 10px; padding: 10px 24px; background: #e86474; color: #fff; border-radius: 24px; text-decoration: none; font-weight: 700; font-size: 14px; transition: background 0.2s;}
+        .card a:hover {background: #a23a61;}
+        .section {padding: 40px 0;}
+        .section img {max-width: 300px; width: 100%;}
+        .section h2 {margin-bottom: 10px;}
+        .section p {margin: 0 0 10px 0;}
+        .center {text-align: center;}
+        /* Modal styles */
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 100px;
+            left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto;
+            background: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .button {
+            background: #e86474;
+            border: none;
+            border-radius: 24px;
+            color: white;
+            padding: 10px 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .button:hover {background: #a23a61;}
+        @media (max-width: 700px) {
+            .main-section {flex-direction: column; text-align: center;}
+            .main-img {text-align: center; margin-top: 30px;}
+            .cards {flex-direction: column; gap: 20px;}
+        }
+        .four-columns {
+            display: flex;
+            width: 100vw;
+            height: 90vh;
+            min-height: 400px;
+        }
+        .column {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .col1 { background: #d4c9c7; }
+        .col2 { background: #f0b5bd; }
+        .col3 { background: #e26575; }
+        .col4 { background: #a23a61; }
+        .column img {
+            width: 180px;
+            max-width: 60%;
+            margin-bottom: 30px;
+        }
+        .column h3 {
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin: 0 0 18px 0;
+            color: #222;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .col3 h3, .col4 h3 {
+            color: #fff;
+        }
+        .column .card-btn {
+            margin-top: 0;
+            padding: 8px 22px;
+            background: #fff;
+            color: #222;
+            border: none;
+            border-radius: 3px;
+            font-size: 10px;
+            font-family: inherit;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: background 0.2s, color 0.2s;
+        }
+        .col3 .card-btn, .col4 .card-btn {
+            background: #fff;
+            color: #a23a61;
+        }
+        .column .card-btn:hover {
+            background: #222;
+            color: #fff;
+        }
+        @media (max-width: 900px) {
+            .four-columns {
+                flex-direction: column;
+                height: auto;
+            }
+            .column {
+                min-height: 200px;
+                padding: 40px 0;
+            }
+        }
+        .music-player-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 32px;
+            margin-bottom: 56px;
+        }
+        .spotify-player {
+            background: #181818;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            width: 410px;
+            max-width: 95vw;
+        }
+        .album-art {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .track-info {
+            flex: 1;
+            color: #fff;
+            font-family: 'Indie Flower', cursive;
+        }
+        .track-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        .track-artist {
+            font-size: 0.95rem;
+            color: #b3b3b3;
+        }
+        .audio-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 18px;
+            min-width: 120px;
+        }
+        .progress-bar {
+            width: 120px;
+            height: 4px;
+            background: #404040;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 2px;
+        }
+        .progress {
+            height: 100%;
+            background: #1db954;
+            width: 0%;
+        }
+        .time {
+            color: #b3b3b3;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            width: 120px;
+            margin-top: 2px;
+        }
+        .play-btn {
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+        .scroll-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 36px;
+            color: #888;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+        .arrow-down {
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+            border-left: 3px solid #bbb;
+            border-bottom: 3px solid #bbb;
+            transform: rotate(-45deg);
+            margin-bottom: 2px;
+            animation: arrow-bounce 1.2s infinite;
+        }
+        @keyframes arrow-bounce {
+            0%, 100% { transform: translateY(0) rotate(-45deg); }
+            50% { transform: translateY(8px) rotate(-45deg); }
+        }
+        .polaroid-strip-outer {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            margin-top: 0;
+        }
+        .polaroid-strip-bg {
+            background: repeating-linear-gradient(0deg, #f7f3e8 0px, #f7f3e8 23px, #ece7d8 24px, #ece7d8 25px);
+            border-radius: 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 0 0 32px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 340px;
+            min-height: 100vh;
+        }
+        .polaroid-strip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: none;
+            border-radius: 24px;
+            padding: 0;
+            width: 100%;
+        }
+        .polaroid-camera {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+        .polaroid-photos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 0;
+            gap: 24px;
+            width: 100%;
+        }
+        .polaroid-frame {
+            background: #fff;
+            border: 2.5px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            padding: 8px 8px 36px 8px;
+            width: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 0;
+        }
+        .polaroid-frame img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background: #eaeaea;
+        }
+        .polaroid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #222;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 2;
+            padding: 18px 10px 24px 10px;
+        }
+        .polaroid-frame:hover .polaroid-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .emoji {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+        @media (max-width: 600px) {
+            .polaroid-strip-bg {
+                width: 98vw;
+                min-width: unset;
+            }
+            .polaroid-frame {
+                width: 90vw;
+                max-width: 260px;
+            }
+            .polaroid-frame img {
+                width: 80vw;
+                max-width: 220px;
+                height: 80vw;
+                max-height: 220px;
+            }
+        }
+        /* Falling Hearts CSS */
+        .heart {
+            position: fixed;
+            top: -10vh; /* Start above the screen */
+            font-size: 2rem;
+            color: red;
+            animation: fall linear infinite;
+            user-select: none;
+            pointer-events: none; /* So they don't interfere with clicks */
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(120vh) rotate(360deg); /* Fall below the screen and rotate */
+                opacity: 0;
+            }
+        }
+        /* Falling Pictures CSS */
+        .falling-picture {
+            position: fixed;
+            top: -20vh; /* Start a bit higher for potentially larger images */
+            animation: fall linear infinite;
+            user-select: none;
+            pointer-events: none; /* So they don't interfere with clicks */
+            width: 100px; /* Default width, can be randomized in JS */
+            height: auto;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            background-color: white; /* In case images are transparent */
+        }
+        .card-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #e86474;
+            text-align: center;
+            margin: 0 auto;
+            padding: 32px 0;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 2px;
+        }
+        .polaroid-photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+        }
+        .polaroid-frame {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #fff;
+            border: 2.5px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            margin-bottom: 0;
+            cursor: pointer;
+            transition: box-shadow 0.2s, border 0.2s;
+        }
+        .polaroid-frame:focus {
+            outline: 2px solid #e86474;
+        }
+        .polaroid-frame:hover, .polaroid-frame.active {
+            box-shadow: 0 8px 24px rgba(226,100,117,0.18);
+            border: 2.5px solid #e86474;
+        }
+        .polaroid-frame .polaroid-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.97);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.05rem;
+            text-align: center;
+            padding: 18px 10px 24px 10px;
+            z-index: 2;
+        }
+        .polaroid-frame:hover .polaroid-overlay,
+        .polaroid-frame.active .polaroid-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        @media (max-width: 700px) {
+            .polaroid-frame { width: 44vw; height: 44vw; max-width: 120px; max-height: 120px; }
+            .card-number { font-size: 1.3rem; padding: 18px 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo_container">
+                <a href="#"><img src="us.jpg"></a>
+            </div>
+        </div>
+    </header>
+        <div class="music-player-top">
+            <div class="spotify-player">
+                <img src="until i found you.jpg" alt="Album Art" class="album-art">
+                <div class="track-info">
+                    <div class="track-title">Until I Found You (Em Beihold Version)</div>
+                    <div class="track-artist">Stephen Sanchez, Em Beihold</div>
+                </div>
+                <div class="audio-controls">
+                    <button class="play-btn" id="playPauseBtn">&#9654;</button>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                    <div class="time">
+                        <span id="currentTime">0:00</span>
+                        <span id="duration">2:57</span>
+                    </div>
+                    <audio id="audio" src="Until I Found You (Em Beihold Version).mp3" autoplay></audio>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="arrow-down"></div>
+        </div>
+        <div class="polaroid-strip-outer">
+            <div class="polaroid-strip-bg">
+                <div class="polaroid-strip">
+                    <div class="polaroid-camera">
+                        <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="8" width="304" height="180" rx="32" fill="#ede5d0" stroke="#222" stroke-width="8"/>
+                            <rect x="8" y="8" width="304" height="180" rx="32" fill="none" stroke="#222" stroke-width="8"/>
+                            <path d="M8 140 Q160 210 312 140 V188 Q312 212 288 212 H32 Q8 212 8 188 Z" fill="#222" stroke="#222" stroke-width="4"/>
+                            <rect x="120" y="140" width="12" height="36" rx="4" fill="#f9d923"/>
+                            <rect x="136" y="140" width="12" height="36" rx="4" fill="#ea3788"/>
+                            <rect x="152" y="140" width="12" height="36" rx="4" fill="#7ed957"/>
+                            <rect x="168" y="140" width="12" height="36" rx="4" fill="#36c9c6"/>
+                            <circle cx="160" cy="80" r="48" fill="#bdbdbd" stroke="#222" stroke-width="8"/>
+                            <circle cx="160" cy="80" r="36" fill="#ede5d0" stroke="#222" stroke-width="6"/>
+                            <circle cx="160" cy="80" r="24" fill="#222" stroke="#888" stroke-width="4"/>
+                            <circle cx="160" cy="80" r="12" fill="#888"/>
+                            <ellipse cx="170" cy="70" rx="8" ry="4" fill="#fff" opacity="0.5"/>
+                            <circle cx="56" cy="56" r="14" fill="#e74c3c" stroke="#222" stroke-width="5"/>
+                            <rect x="32" y="28" width="54" height="28" rx="6" fill="#222"/>
+                            <text x="59" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#fff">Photo</text>
+                            <path d="M32 56 Q59 70 86 56" fill="#e74c3c"/>
+                            <circle cx="250" cy="48" r="13" fill="#222" stroke="#222" stroke-width="3"/>
+                            <circle cx="280" cy="62" r="9" fill="#888" stroke="#222" stroke-width="4"/>
+                        
+                        </svg>
+                    </div>
+                    <div class="polaroid-photos">
+                        <div class="polaroid-frame"><img src="first.png" alt="Polaroid 1"><div class="polaroid-overlay">You make me smile every day. <span class="emoji">😊</span></div></div>
+                        <div class="polaroid-frame"><img src="second.png" alt="Polaroid 2"><div class="polaroid-overlay">Thank you for letting me truly know and love you. <span class="emoji">🧡</span></div></div>
+                        <div class="polaroid-frame"><img src="third.png" alt="Polaroid 3"><div class="polaroid-overlay">Every moment with you is special. <span class="emoji">✨</span></div></div>
+                        <div class="polaroid-frame"><img src="fourth.png" alt="Polaroid 4"><div class="polaroid-overlay">I love you more than words can say. <span class="emoji">🐻</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const audio = document.getElementById('audio');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const progress = document.getElementById('progress');
+            const currentTime = document.getElementById('currentTime');
+            const duration = document.getElementById('duration');
+            playPauseBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            });
+            audio.addEventListener('play', () => {
+                playPauseBtn.innerHTML = '&#10073;&#10073;'; // Pause icon
+            });
+            audio.addEventListener('pause', () => {
+                playPauseBtn.innerHTML = '&#9654;'; // Play icon
+            });
+            audio.addEventListener('timeupdate', () => {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progress.style.width = percent + '%';
+                currentTime.textContent = formatTime(audio.currentTime);
+            });
+            audio.addEventListener('loadedmetadata', () => {
+                duration.textContent = formatTime(audio.duration);
+            });
+            document.querySelector('.progress-bar').addEventListener('click', (e) => {
+                const bar = e.currentTarget;
+                const rect = bar.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const percent = x / bar.offsetWidth;
+                audio.currentTime = percent * audio.duration;
+            });
+            function formatTime(sec) {
+                if (isNaN(sec)) return '0:00';
+                const m = Math.floor(sec / 60);
+                const s = Math.floor(sec % 60).toString().padStart(2, '0');
+                return `${m}:${s}`;
+            }
+
+            // Falling Hearts JavaScript
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '&#10084;'; // HTML entity for a heart
+                heart.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // Random duration between 3s and 5s
+                heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; // Random size between 1rem and 2rem
+
+                document.body.appendChild(heart);
+
+                // Remove heart after it falls
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000); // Corresponds to the longest animation duration + a buffer
+            }
+
+            // Create hearts at intervals
+            setInterval(createHeart, 300); // Create a new heart every 300ms
+
+            // Array of image filenames for falling pictures
+            const fallingImageFiles = [
+                'cubao.jpg',
+                'hehe.jpg',
+                'gif.gif',
+                'kabasera.jpg',
+                'shangrila.jpg',
+                'angono.jpg',
+                'us.jpg',
+                'mini.jpg',
+                'fourth.png',
+                'third.png',
+                'second.png',
+                'first.png',
+                'shrek.jpg',
+                'hug.jpg',
+                'pic.jpg',
+                'kap.jpg',
+                'flowers.jpg',
+                '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg',
+      '11.jpg',
+      '12.jpg',
+      '13.jpg',
+      '14.jpg',
+      '15.jpg',
+      '16.jpg',
+      '17.jpg',
+      '18.jpg',
+      '19.jpg',
+      '20.jpg',
+      '21.jpg',
+      '22.jpg',
+      '23.jpg',
+      '24.jpg',
+      '25.jpg',
+      '26.jpg',
+      '27.jpg',
+      '28.jpg',
+      '29.jpg',
+      '30.jpg', 
+      '31.jpg',
+      '32.jpg',
+      '33.jpg',
+      '34.jpg',
+      '35.jpg',
+      '36.jpg',
+      '37.jpg',
+      '38.jpg',
+      '39.jpeg',
+      '40.jpeg',
+      '41.jpeg',
+      '42.jpeg',
+      '43.jpeg',
+      '44.jpeg',
+      '45.jpeg',
+      '46.jpeg',
+      '47.jpeg',
+      '48.jpeg',
+      '49.jpeg',
+      '50.jpeg',
+      '51.jpeg',
+      '52.jpeg',
+      '53.jpeg',
+      '54.jpeg',
+      '55.jpeg',
+      '56.jpeg',
+      '57.jpeg',
+      '58.jpeg',
+      '59.jpeg',
+      '60.jpeg',
+      '61.jpeg',
+      '62.jpeg',
+                
+            ];
+
+            function createFallingPicture() {
+                const picture = document.createElement('img');
+                picture.classList.add('falling-picture');
+                
+                // Randomly select an image
+                const randomImageSrc = fallingImageFiles[Math.floor(Math.random() * fallingImageFiles.length)];
+                picture.src = randomImageSrc;
+                
+                picture.style.left = Math.random() * 90 + 'vw'; // Random horizontal position (0-90vw to avoid overflow with 100px width)
+                picture.style.animationDuration = (Math.random() * 3 + 4) + 's'; // Random duration between 4s and 7s
+                const randomSize = Math.random() * 50 + 50; // Random width between 50px and 100px
+                picture.style.width = randomSize + 'px';
+                // picture.style.height = 'auto'; // Already set in CSS, but could be randomized too
+
+                document.body.appendChild(picture);
+
+                // Remove picture after it falls
+                setTimeout(() => {
+                    picture.remove();
+                }, 7000); // Corresponds to the longest animation duration + a buffer
+            }
+
+            // Create falling pictures at intervals
+            setInterval(createFallingPicture, 800); // Create a new picture every 800ms (less frequent than hearts)
+        </script>
+
+    <main>
+        <section class="main-section container">
+            <div class="main-text">
+                <h2>Hi my baby,</h2>
+                <h1>Happy birthday! &lt;3</h1>
+            </div>
+            <div class="main-img">
+                <img src="https://happybirthday.keepsake.id/wp-content/uploads/sites/2/2023/01/flowers.png" alt="flowers">
+            </div>
+        </section>
+        <section class="section container">
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+                <div style="flex:1 1 300px;">
+                    <img src="kabasera.jpg" alt="Section 3.1">
+                    <h2>i'm so glad</h2>
+                    <p>to have you in my life. You have a heart of gold and a soul that radiates warmth and kindness. You're the most beautiful person I've ever met — inside and out. Every moment with you feels like a gift, and I'm grateful every day for your love.</p>
+                </div>
+                <div style="flex:1 1 300px;">
+                    <video src="vday.mp4" controls style="max-width:100%; width:100%; border-radius:12px; background:#000;" poster="">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h2>as we are together,</h2>
+                    <p>I just wanted to take a moment to let you know how much you truly mean to me. I'm committed to making not just every birthday, but every single day of your life special. I promise to always put you first, to cherish you, and to do everything I can to make you feel deeply loved, appreciated, and valued — every day, in every way.</p>
+                </div>
+            </div>
+        </section>
+        <section class="section container center">
+            <h2>Once again</h2>
+            <img src="gif.gif" alt="Section 4">
+            <p>Happy birthday my love, my best friend, my soulmate, and my partner in crime. Thank you for being an amazing partner, for loving me unconditionally, and for being the most incredible person that I have ever met.</p>
+            <p>I wish you all the love, happiness, and success in the world. May all your dreams and wishes come true, and may this year be filled with new adventures and unforgettable moments. I look forward to sharing many more birthdays with you and making many more wonderful memories together.</p>
+            <p>May your day be filled with all the joy and love that you deserve. I love you more than words can express.</p>
+        </section>
+    <!-- 20 Things I Love About You Letter -->
+    <section class="section container center" style="margin-top: 40px; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h2 style="margin-bottom: 32px;">20 Things I Love About You</h2>
+        <div class="polaroid-strip-bg" style="background:none; box-shadow:none; padding:0; display: flex; justify-content: center; align-items: center; width: 100%;">
+            <div class="polaroid-photos" style="flex-wrap:wrap; flex-direction:row; gap:18px; justify-content:center; align-items: center; width: auto; margin: 0 auto;">
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">1</div><div class="polaroid-overlay">Your beautiful smile that brightens my day.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">2</div><div class="polaroid-overlay">The way you laugh and make everything feel lighter.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">3</div><div class="polaroid-overlay">The way you genuinely care for others.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">4</div><div class="polaroid-overlay">Your intelligence and curiosity about the world.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">5</div><div class="polaroid-overlay">The way you support and believe in me.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">6</div><div class="polaroid-overlay">Your creativity and unique perspective.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">7</div><div class="polaroid-overlay">The warmth of your hugs and the comfort they bring.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">8</div><div class="polaroid-overlay">Your honesty and openness with me.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">9</div><div class="polaroid-overlay">The way you listen and truly understand me.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">10</div><div class="polaroid-overlay">Your sense of adventure and willingness to try new things.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">11</div><div class="polaroid-overlay">The little things you do to show you care.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">12</div><div class="polaroid-overlay">Your patience, even when I'm so makolit</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">13</div><div class="polaroid-overlay">The way you inspire me to be a better person.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">14</div><div class="polaroid-overlay">Your loyalty and effortness to those you love.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">15</div><div class="polaroid-overlay">The way you make even ordinary moments special.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">16</div><div class="polaroid-overlay">Your strength and resilience through challenges.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">17</div><div class="polaroid-overlay">The sparkle in your eyes when you're happy. (isang beautiful eyes nga)</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">18</div><div class="polaroid-overlay">Your silly side that always makes me laugh.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">19</div><div class="polaroid-overlay">The dreams and plans we share for the future.</div></div>
+                <div class="polaroid-frame" tabindex="0"><div class="card-number">20</div><div class="polaroid-overlay">Most of all, I love you for being you—my favorite person in the world.</div></div>
+            </div>
+        </div>
+    </section>
+        <div class="four-columns">
+            <div class="column col1">
+                <img src="hehe.jpg" alt="letter">
+                <h3>???</h3>
+                <a href="letter.html"><button class="card-btn">Click me</button></a>
+            </div>
+            <div class="column col4">
+                <img src="angono.jpg" alt="quiz">
+                <h3>???</h3>
+                <a href="cw.html"><button class="card-btn">:P</button></a>
+            </div>
+        </div>
+    </main>
+    <!-- Audio and Modal -->
+    <div id="myModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: #fefefe; margin: auto; padding: 30px; border-radius: 8px; text-align: center; max-width: 350px;">
+        </div>
+    </div>
+    <!-- Letter Modal -->
+    <div id="letterModal" style="display:none; position:fixed; z-index:2000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.25); align-items:center; justify-content:center;">
+        <div id="letterModalContent" style="background:#f8b4bc; border-radius:10px; max-width:400px; width:90vw; margin:auto; box-shadow:0 2px 16px rgba(0,0,0,0.15); padding:28px 24px 24px 24px; position:relative; font-family:'Open Sans',Arial,sans-serif; color:#222; overflow-y:auto; max-height:90vh;">
+            <span id="closeLetterModal" style="position:absolute; top:12px; right:18px; font-size:22px; font-weight:700; color:#333; cursor:pointer;">&times;</span>
+            <div style="text-align:center;">
+                <div style="font-size:26px; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom:8px; color:#222;">Happy birthday, sayang!</div>
+                <div style="font-size:15px; color:#333; margin-bottom:16px;">to the one brought so much joy, laughter, and happiness into my life, the one I'm grateful for.</div>
+            </div>
+            <hr style="border:0; border-top:1px solid #fff; margin:16px 0 18px 0;">
+            <div style="font-size:16px; color:#222;">
+                <div style="font-weight:600; text-align:center; margin-bottom:18px;">My dearest Michelle</div>
+                <div style="margin-bottom:16px; text-align:center;">Can hardly believe that we made this far, and here we are celebrating another birthday. I hope this day brings you all the joy and happiness that you deserve.</div>
+                <div style="margin-bottom:16px; text-align:center;">I want you to know how much I love and appreciate everything that you do for me. You make me feel loved, cared for, and valued, and I feel incredibly lucky to have you in my life. You have brought so much happiness and joy into my life, and I can't imagine a world without you.</div>
+                <div style="margin-bottom:16px; text-align:center;">I admire you for so many reasons - your kindness, your intelligence, your caring, your love and your compassion. You inspire me to be a better person, and you push me to be the best version of myself every day. I am so grateful for your love and support, and for the way you always stand by my side, through both the good times and the bad. I want you to know that I am also here for you, now and always. I promise to stand by your side, to support you through thick and thin, and to love you unconditionally.</div>
+                <div style="margin-bottom:16px; text-align:center;">So on this special day, I want to wish you the happiest of birthdays. May this year be filled with all the things that bring you joy, and may all your dreams and wishes come true. I can't wait to meet you and spend the rest of my life making you the happiest person in the world.</div>
+                <div style="margin-top:24px; text-align:center;">With all my love,<br>Bang Ando</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Modal and audio logic
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var x = document.getElementById("myAudio");
+        function playAudio() { x.play(); }
+        btn.onclick = function() {
+            modal.style.display = "none";
+            playAudio();
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                playAudio();
+            }
+        }
+        // Show modal on page load
+        window.onload = function() {
+            modal.style.display = "flex";
+        }
+        // Letter Modal logic
+        const letterBtn = document.getElementById('letter');
+        const letterModal = document.getElementById('letterModal');
+        const closeLetterModal = document.getElementById('closeLetterModal');
+        const letterModalContent = document.getElementById('letterModalContent');
+        
+        letterBtn.onclick = function(e) {
+            e.preventDefault();
+            letterModal.style.display = 'flex';
+        };
+        
+        closeLetterModal.onclick = function() {
+            letterModal.style.display = 'none';
+        };
+        
+        window.addEventListener('click', function(event) {
+            if (event.target === letterModal) {
+                letterModal.style.display = 'none';
+            }
+        });
+        // Enable click-to-toggle for overlays (for mobile/touch)
+        document.querySelectorAll('.polaroid-frame').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                // Remove active from others
+                document.querySelectorAll('.polaroid-frame').forEach(function(c) { if (c !== card) c.classList.remove('active'); });
+                card.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
